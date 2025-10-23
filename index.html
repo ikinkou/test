@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英語の倒置法（Inversion）完全ガイドの練習だよ</title>
+    <title>英語の倒置法aaaa（Inversion）完全ガイド</title>
     <!-- Tailwind CSS CDNをロード -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -42,6 +42,28 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
+        /* タブのスタイル */
+        .tab-button {
+            padding: 0.75rem 1.25rem;
+            margin-right: 0.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            flex-shrink: 0; /* タブが縮まないようにする */
+            border: 1px solid transparent;
+        }
+        .tab-button:last-child {
+            margin-right: 0;
+        }
+        .tab-button.active {
+            background-color: #3b82f6; /* Blue-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+        .tab-button:not(.active):hover {
+            background-color: #e5e7eb; /* Gray-200 */
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -49,7 +71,7 @@
     <header class="bg-white shadow-md sticky top-0 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <h1 class="text-3xl font-extrabold text-blue-600 tracking-tight">
-                英語の倒置法（Inversion）ここがタイトル
+                英語aaaaadafsafasfdの倒置法（Inversion）
             </h1>
             <p class="text-sm text-gray-500 mt-1">言葉の順序を入れ替えて強調するテクニック</p>
         </div>
@@ -57,167 +79,191 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <!-- 倒置法の定義と仕組み -->
-        <section class="mb-16 p-6 bg-white rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold mb-6 text-gray-700">倒置とは？ 基本の仕組み</h2>
-            <p class="text-lg mb-8 leading-relaxed">
-                倒置（Inversion）とは、文の主語と動詞（または助動詞）の順序を入れ替えることで、文頭に来た要素を強調する表現技法です。**普通の疑問文と同じ語順**になるのが特徴です。
-            </p>
+        <!-- タブボタン (ナビゲーション) -->
+        <div id="tabs" class="mb-8 overflow-x-auto whitespace-nowrap scroll-smooth">
+            <button class="tab-button active bg-gray-200 text-gray-700" onclick="openTab('tab-mechanism', this)">基本の仕組み</button>
+            <button class="tab-button bg-gray-200 text-gray-700" onclick="openTab('tab-pattern-1', this)">1. 否定・制限</button>
+            <button class="tab-button bg-gray-200 text-gray-700" onclick="openTab('tab-pattern-2', this)">2. 場所・方向</button>
+            <button class="tab-button bg-gray-200 text-gray-700" onclick="openTab('tab-pattern-3', this)">3. 同意 (So/Nor)</button>
+            <button class="tab-button bg-gray-200 text-gray-700" onclick="openTab('tab-pattern-4', this)">4. 仮定法 (If省略)</button>
+            <button class="tab-button bg-gray-200 text-gray-700" onclick="openTab('tab-summary', this)">💡 学習のポイント</button>
+        </div>
 
-            <!-- インフォグラフィック: 仕組みの比較 (2列表示を解除) -->
-            <div class="grid gap-8 items-center">
-                
-                <!-- 1. 通常の語順 -->
-                <div class="p-5 border-2 border-green-500 rounded-xl bg-green-50 shadow-inner">
-                    <p class="text-xl font-bold text-green-700 mb-4">✅ 通常の語順</p>
-                    <div class="flex items-center space-x-2 flex-wrap justify-center">
-                        <div class="box bg-green-200 text-green-800 shadow-md">主語 (S)</div>
-                        <span class="text-3xl text-gray-400">&rarr;</span>
-                        <div class="box bg-green-300 text-green-900 shadow-md">助動詞 / 動詞 (V)</div>
-                        <span class="text-3xl text-gray-400">&rarr;</span>
-                        <div class="box bg-green-200 text-green-800 shadow-md">残りの文</div>
-                    </div>
-                    <p class="mt-4 text-center text-sm text-gray-600">I have never seen...</p>
-                </div>
+        <!-- タブコンテンツ -->
+        <div id="tab-content-container">
 
-                <!-- 2. 倒置の語順 -->
-                <div class="p-5 border-2 border-red-500 rounded-xl bg-red-50 shadow-inner">
-                    <p class="text-xl font-bold text-red-700 mb-4">🔥 倒置の語順 (強調)</p>
-                    <div class="flex items-center space-x-2 flex-wrap justify-center">
-                        <div class="box bg-blue-500 text-white shadow-lg">強調したい要素</div>
-                        <span class="text-3xl text-gray-400">&rarr;</span>
-                        <div class="box bg-red-300 text-red-900 shadow-md">助動詞 / 動詞 (V)</div>
-                        <span class="text-3xl text-gray-400">&rarr;</span>
-                        <div class="box bg-red-200 text-red-800 shadow-md">主語 (S)</div>
+            <!-- Tab 1: 倒置とは？ 基本の仕組み -->
+            <div id="tab-mechanism" class="tab-content transition-opacity duration-300">
+                <section class="p-6 bg-white rounded-xl shadow-lg">
+                    <h2 class="section-title text-2xl font-bold mb-6 text-gray-700">倒置とは？ 基本の仕組み</h2>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        倒置（Inversion）とは、文の主語と動詞（または助動詞）の順序を入れ替えることで、文頭に来た要素を強調する表現技法です。**普通の疑問文と同じ語順**になるのが特徴です。
+                    </p>
+
+                    <!-- インフォグラフィック: 仕組みの比較 (1列表示) -->
+                    <div class="grid gap-8 items-center">
+                        
+                        <!-- 1. 通常の語順 -->
+                        <div class="p-5 border-2 border-green-500 rounded-xl bg-green-50 shadow-inner">
+                            <p class="text-xl font-bold text-green-700 mb-4">✅ 通常の語順</p>
+                            <div class="flex items-center space-x-2 flex-wrap justify-center">
+                                <div class="box bg-green-200 text-green-800 shadow-md">主語 (S)</div>
+                                <span class="text-3xl text-gray-400">&rarr;</span>
+                                <div class="box bg-green-300 text-green-900 shadow-md">助動詞 / 動詞 (V)</div>
+                                <span class="text-3xl text-gray-400">&rarr;</span>
+                                <div class="box bg-green-200 text-green-800 shadow-md">残りの文</div>
+                            </div>
+                            <p class="mt-4 text-center text-sm text-gray-600">I have never seen...</p>
+                        </div>
+
+                        <!-- 2. 倒置の語順 -->
+                        <div class="p-5 border-2 border-red-500 rounded-xl bg-red-50 shadow-inner">
+                            <p class="text-xl font-bold text-red-700 mb-4">🔥 倒置の語順 (強調)</p>
+                            <div class="flex items-center space-x-2 flex-wrap justify-center">
+                                <div class="box bg-blue-500 text-white shadow-lg">強調したい要素</div>
+                                <span class="text-3xl text-gray-400">&rarr;</span>
+                                <div class="box bg-red-300 text-red-900 shadow-md">助動詞 / 動詞 (V)</div>
+                                <span class="text-3xl text-gray-400">&rarr;</span>
+                                <div class="box bg-red-200 text-red-800 shadow-md">主語 (S)</div>
+                            </div>
+                            <p class="mt-4 text-center text-sm text-gray-600">Never have I seen...</p>
+                        </div>
                     </div>
-                    <p class="mt-4 text-center text-sm text-gray-600">Never have I seen...</p>
-                </div>
+                </section>
             </div>
-        </section>
 
-        <!-- 倒置法の4つの主要なパターン -->
-        <h2 class="section-title text-3xl font-bold mb-10 text-gray-700">倒置の主要な4つのパターン</h2>
-        
-        <!-- パターン 1: 否定・制限の副詞句 (2列表示を解除) -->
-        <section class="mb-12 p-6 bg-white rounded-xl shadow-lg border-l-4 border-yellow-500">
-            <h3 class="text-xl font-bold text-yellow-700 mb-4">1. 否定・制限の副詞句が文頭に来る場合</h3>
-            <p class="mb-4 text-gray-600">
-                <span class="font-semibold text-yellow-900">Never, Seldom, Hardly, Only then, Not until</span> など、否定や制限の意味を持つ語句が文頭に来ると倒置が起こります。
-            </p>
+            <!-- Tab 2: パターン 1: 否定・制限の副詞句 -->
+            <div id="tab-pattern-1" class="tab-content transition-opacity duration-300 hidden">
+                <section class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold text-yellow-700 mb-4">1. 否定・制限の副詞句が文頭に来る場合</h3>
+                    <p class="mb-4 text-gray-600">
+                        <span class="font-semibold text-yellow-900">Never, Seldom, Hardly, Only then, Not until</span> など、否定や制限の意味を持つ語句が文頭に来ると倒置が起こります。
+                    </p>
+                    
+                    <div class="grid gap-6">
+                        <!-- 例文 1-1 (Never) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Never</strong> <span class="text-green-600">have</span> I <span class="text-green-600">seen</span> such a beautiful sight.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: I have never seen...）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **これほど美しい光景を一度も見たことがない。**</p>
+                        </div>
+                        
+                        <!-- 例文 1-2 (Only then) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Only then</strong> <span class="text-green-600">did</span> I <span class="text-green-600">realize</span> my mistake.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: I realized my mistake only then.）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **その時になって初めて**私は自分の間違いに気づいた。</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
             
-            <div class="grid gap-6">
-                <!-- 例文 1-1 (Never) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Never</strong> <span class="text-green-600">have</span> I <span class="text-green-600">seen</span> such a beautiful sight.
+            <!-- Tab 3: パターン 2: 場所や方向を示す副詞句 -->
+            <div id="tab-pattern-2" class="tab-content transition-opacity duration-300 hidden">
+                <section class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold text-green-700 mb-4">2. 場所や方向を示す副詞句が文頭に来る場合</h3>
+                    <p class="mb-4 text-gray-600">
+                        <span class="font-semibold text-green-900">Here, There, Under the tree</span> など、場所・方向の語句が文頭に来て、主語が**名詞**のときに倒置が起こります。（※主語が代名詞の場合は倒置しません。）
                     </p>
-                    <p class="text-sm italic text-gray-500">（通常: I have never seen...）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **これほど美しい光景を一度も見たことがない。**</p>
-                </div>
-                
-                <!-- 例文 1-2 (Only then) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Only then</strong> <span class="text-green-600">did</span> I <span class="text-green-600">realize</span> my mistake.
-                    </p>
-                    <p class="text-sm italic text-gray-500">（通常: I realized my mistake only then.）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **その時になって初めて**私は自分の間違いに気づいた。</p>
-                </div>
+
+                    <div class="grid gap-6">
+                        <!-- 例文 2-1 (Here) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Here</strong> <span class="text-green-600">comes</span> <span class="text-green-600">the bus</span>.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: The bus comes here.）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **ほら、バスが来た。**</p>
+                        </div>
+
+                        <!-- 例文 2-2 (Under the tree) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Under the tree</strong> <span class="text-green-600">sat</span> <span class="text-green-600">a small dog</span>.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: A small dog sat under the tree.）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **その木の下に、小さな犬が座っていた。**</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+            
+            <!-- Tab 4: パターン 3: 「So」や「Neither/Nor」で同意を示す場合 -->
+            <div id="tab-pattern-3" class="tab-content transition-opacity duration-300 hidden">
+                <section class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-indigo-500">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4">3. 「So」や「Neither/Nor」で同意を示す場合</h3>
+                    <p class="mb-4 text-gray-600">
+                        前の発言に対し、「私もそうだ」や「私もそうではない」と同意を示す際にも倒置を使います。
+                    </p>
+
+                    <div class="grid gap-6">
+                        <!-- 例文 3-1 (So do I - 肯定) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                A: I like coffee. <br> B: <strong class="text-red-600">So</strong> <span class="text-green-600">do</span> <span class="text-green-600">I</span>.
+                            </p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **私もそうだ（私もコーヒーが好きだ）。**</p>
+                        </div>
+
+                        <!-- 例文 3-2 (Nor do I - 否定) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                A: I don't like natto. <br> B: <strong class="text-red-600">Neither</strong> <span class="text-green-600">do</span> <span class="text-green-600">I</span>.
+                            </p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **私もそうではない（私も納豆が好きではない）。**</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tab 5: パターン 4: 仮定法で「if」を省略する場合 -->
+            <div id="tab-pattern-4" class="tab-content transition-opacity duration-300 hidden">
+                <section class="p-6 bg-white rounded-xl shadow-lg border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-700 mb-4">4. 仮定法で「if」を省略する場合</h3>
+                    <p class="mb-4 text-gray-600">
+                        仮定法（`If`節）で接続詞の `if` を省略すると、代わりに倒置が起こります。**フォーマルで硬い表現**です。
+                    </p>
+
+                    <div class="grid gap-6">
+                        <!-- 例文 4-1 (Were I - 仮定法過去) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Were</strong> <span class="text-green-600">I</span> rich, I would travel.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: If I were rich...）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **もし私がお金持ちなら**、旅行をするだろう。</p>
+                        </div>
+
+                        <!-- 例文 4-2 (Had he known - 仮定法過去完了) -->
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
+                                <strong class="text-red-600">Had</strong> <span class="text-green-600">he known</span> the truth, he would have acted differently.
+                            </p>
+                            <p class="text-sm italic text-gray-500">（通常: If he had known...）</p>
+                            <p class="text-sm font-semibold mt-1">日本語訳: **もし彼が真実を知っていたら**、違った行動をとっていただろう。</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         
-        <!-- パターン 2: 場所や方向を示す副詞句 (2列表示を解除) -->
-        <section class="mb-12 p-6 bg-white rounded-xl shadow-lg border-l-4 border-green-500">
-            <h3 class="text-xl font-bold text-green-700 mb-4">2. 場所や方向を示す副詞句が文頭に来る場合</h3>
-            <p class="mb-4 text-gray-600">
-                <span class="font-semibold text-green-900">Here, There, Under the tree</span> など、場所・方向の語句が文頭に来て、主語が**名詞**のときに倒置が起こります。（※主語が代名詞の場合は倒置しません。）
-            </p>
-
-            <div class="grid gap-6">
-                <!-- 例文 2-1 (Here) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Here</strong> <span class="text-green-600">comes</span> <span class="text-green-600">the bus</span>.
-                    </p>
-                    <p class="text-sm italic text-gray-500">（通常: The bus comes here.）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **ほら、バスが来た。**</p>
-                </div>
-
-                <!-- 例文 2-2 (Under the tree) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Under the tree</strong> <span class="text-green-600">sat</span> <span class="text-green-600">a small dog</span>.
-                    </p>
-                    <p class="text-sm italic text-gray-500">（通常: A small dog sat under the tree.）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **その木の下に、小さな犬が座っていた。**</p>
-                </div>
+            <!-- Tab 6: まとめと学習のポイント -->
+            <div id="tab-summary" class="tab-content transition-opacity duration-300 hidden">
+                <section class="p-6 bg-blue-100 border-2 border-blue-400 rounded-xl shadow-2xl">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-4">💡 学習のポイント</h3>
+                    <ul class="space-y-3 list-disc list-inside text-gray-700">
+                        <li>倒置は、**文頭の要素を際立たせるため**に使われる。</li>
+                        <li>倒置の語順は、基本的に**「助動詞/動詞 + 主語」**となり、疑問文と同じ形になる。</li>
+                        <li>「場所・方向」の倒置（例: `Here comes the bus.`) は、動詞と主語が直接入れ替わり、**主語が代名詞だと起こらない**点に注意。</li>
+                        <li>否定語の倒置（例: `Never have I...`）は、**日常会話でもよく使われる**ので、積極的に使ってみましょう！</li>
+                    </ul>
+                </section>
             </div>
-        </section>
-        
-        <!-- パターン 3: 「So」や「Neither/Nor」で同意を示す場合 (2列表示を解除) -->
-        <section class="mb-12 p-6 bg-white rounded-xl shadow-lg border-l-4 border-indigo-500">
-            <h3 class="text-xl font-bold text-indigo-700 mb-4">3. 「So」や「Neither/Nor」で同意を示す場合</h3>
-            <p class="mb-4 text-gray-600">
-                前の発言に対し、「私もそうだ」や「私もそうではない」と同意を示す際にも倒置を使います。
-            </p>
-
-            <div class="grid gap-6">
-                <!-- 例文 3-1 (So do I - 肯定) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        A: I like coffee. <br> B: <strong class="text-red-600">So</strong> <span class="text-green-600">do</span> <span class="text-green-600">I</span>.
-                    </p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **私もそうだ（私もコーヒーが好きだ）。**</p>
-                </div>
-
-                <!-- 例文 3-2 (Nor do I - 否定) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        A: I don't like natto. <br> B: <strong class="text-red-600">Neither</strong> <span class="text-green-600">do</span> <span class="text-green-600">I</span>.
-                    </p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **私もそうではない（私も納豆が好きではない）。**</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- パターン 4: 仮定法で「if」を省略する場合 (2列表示を解除) -->
-        <section class="mb-12 p-6 bg-white rounded-xl shadow-lg border-l-4 border-red-500">
-            <h3 class="text-xl font-bold text-red-700 mb-4">4. 仮定法で「if」を省略する場合</h3>
-            <p class="mb-4 text-gray-600">
-                仮定法（`If`節）で接続詞の `if` を省略すると、代わりに倒置が起こります。**フォーマルで硬い表現**です。
-            </p>
-
-            <div class="grid gap-6">
-                <!-- 例文 4-1 (Were I - 仮定法過去) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Were</strong> <span class="text-green-600">I</span> rich, I would travel.
-                    </p>
-                    <p class="text-sm italic text-gray-500">（通常: If I were rich...）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **もし私がお金持ちなら**、旅行をするだろう。</p>
-                </div>
-
-                <!-- 例文 4-2 (Had he known - 仮定法過去完了) -->
-                <div class="bg-gray-50 p-4 rounded-lg border">
-                    <p class="font-mono text-base bg-blue-100 p-2 rounded-md mb-2">
-                        <strong class="text-red-600">Had</strong> <span class="text-green-600">he known</span> the truth, he would have acted differently.
-                    </p>
-                    <p class="text-sm italic text-gray-500">（通常: If he had known...）</p>
-                    <p class="text-sm font-semibold mt-1">日本語訳: **もし彼が真実を知っていたら**、違った行動をとっていただろう。</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- まとめと学習のポイント -->
-        <section class="p-6 bg-blue-100 border-2 border-blue-400 rounded-xl shadow-2xl">
-            <h3 class="text-2xl font-bold text-blue-700 mb-4">💡 学習のポイント</h3>
-            <ul class="space-y-3 list-disc list-inside text-gray-700">
-                <li>倒置は、**文頭の要素を際立たせるため**に使われる。</li>
-                <li>倒置の語順は、基本的に**「助動詞/動詞 + 主語」**となり、疑問文と同じ形になる。</li>
-                <li>「場所・方向」の倒置（例: `Here comes the bus.`) は、動詞と主語が直接入れ替わり、**主語が代名詞だと起こらない**点に注意。</li>
-                <li>否定語の倒置（例: `Never have I...`）は、**日常会話でもよく使われる**ので、積極的に使ってみましょう！</li>
-            </ul>
-        </section>
+            
+        </div>
 
     </main>
 
@@ -226,7 +272,69 @@
             © 2025 English Inversion Guide
         </div>
     </footer>
+
+    <script>
+        /**
+         * タブコンテンツを切り替える関数
+         * @param {string} tabId - 表示するタブのID (例: 'tab-mechanism')
+         * @param {HTMLElement} buttonElement - クリックされたボタン要素
+         */
+        function openTab(tabId, buttonElement) {
+            // 1. すべてのタブコンテンツを非表示にする
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // 2. すべてのタブボタンのアクティブ状態を解除する
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+                button.classList.remove('bg-blue-600', 'text-white');
+                button.classList.add('bg-gray-200', 'text-gray-700');
+            });
+
+            // 3. 選択されたタブコンテンツを表示する
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                // スムーズな切り替えのために、表示後に少し遅れてopacityを変更（Tailwindのtransitionを使うため）
+                setTimeout(() => {
+                    activeContent.style.opacity = 1;
+                }, 10); 
+            }
+
+            // 4. 選択されたタブボタンをアクティブにする
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+                buttonElement.classList.remove('bg-gray-200', 'text-gray-700');
+                buttonElement.classList.add('bg-blue-600', 'text-white');
+            }
+        }
+
+        // ページロード時に最初のタブ（基本の仕組み）を開く
+        window.onload = function() {
+            // 初期ボタンを取得してアクティブにする
+            const initialButton = document.querySelector('.tab-button');
+            if (initialButton) {
+                initialButton.click();
+            }
+            // スクロール可能なタブバーを常に左端に表示
+            const tabContainer = document.getElementById('tabs');
+            if (tabContainer) {
+                tabContainer.scrollLeft = 0;
+            }
+        };
+
+        // 初期状態で非表示にするための設定 (CSSでhiddenを設定済みですが、JSでも保険をかける)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                if (content.id !== 'tab-mechanism') {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
-
